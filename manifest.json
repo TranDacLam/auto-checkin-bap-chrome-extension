@@ -1,0 +1,32 @@
+{
+  "name": "Auto checkin BAP",
+  "version": "1.0",
+  "description": "Auto checkin BAP useChrome extension.",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "*://checkin.bap.jp/personal_timesheet"
+  ],
+  "background": {
+    "scripts": ["jquery.min.js", "popup.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://checkin.bap.jp/login"],
+      "js": ["jquery.min.js", "login.js"]
+    },
+    {
+      "matches": ["*://checkin.bap.jp/*"],
+      "js": ["jquery.min.js", "claim.js"]
+    },
+    {
+      "matches": ["*://identity.bap.jp/*"],
+      "js": ["jquery.min.js", "identity.js"]
+    }
+  ],
+  "manifest_version": 2
+}
